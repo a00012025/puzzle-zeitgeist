@@ -229,6 +229,9 @@ where
         .map(|_| -> Result<Vec<_>, _> { read_n_scalars(transcript, vk.cs.advice_queries.len()) })
         .collect::<Result<Vec<_>, _>>()?;
 
+    println!("verifier x: {:?}", *x);
+    println!("verifier eval: {:?}", advice_evals[0][1]);
+
     let fixed_evals = read_n_scalars(transcript, vk.cs.fixed_queries.len())?;
 
     let vanishing = vanishing.evaluate_after_x(transcript)?;

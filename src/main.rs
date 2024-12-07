@@ -248,7 +248,7 @@ impl Circuit<Fr> for MyCircuit {
     ) -> Result<(), Error> {
         let input_chip = InputChip::<_>::construct(config.input_config);
 
-        let x = input_chip.load_witness(layouter.namespace(|| "load secret"), self.witness)?;
+        let x: Number<Fr> = input_chip.load_witness(layouter.namespace(|| "load secret"), self.witness)?;
         let nonce = input_chip.load_nonce(layouter.namespace(|| "load nonce"), self.nonce)?;
         let c = input_chip.load_constant(layouter.namespace(|| "load const"), Fr::from(0u64))?;
 
