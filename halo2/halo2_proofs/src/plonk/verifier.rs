@@ -229,6 +229,12 @@ where
         .map(|_| -> Result<Vec<_>, _> { read_n_scalars(transcript, vk.cs.advice_queries.len()) })
         .collect::<Result<Vec<_>, _>>()?;
 
+    println!(
+        "num_proofs: {:?} , n: {:?}",
+        num_proofs,
+        vk.cs.advice_queries.len()
+    );
+    println!("vk.cs.advice_queries[1]: {:?}", vk.cs.advice_queries[1]);
     println!("verifier x: {:?}", *x);
     println!("verifier eval: {:?}", advice_evals[0][1]);
 

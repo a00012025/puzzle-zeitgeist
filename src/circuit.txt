@@ -1,0 +1,40 @@
+Circuit:
+
+Column: witness   digest    constant
+Type:   advice    instance  fixed   
+
+Column: w_state[0] w_state[1] w_state[2] w_partial_sbox 
+Type:   advice      advice      advice      advice          
+
+Column: w_rc_a[0] w_rc_a[1] w_rc_a[2] w_rc_b[0] w_rc_b[1] w_rc_b[2]
+Type:   fixed     fixed     fixed     fixed     fixed     fixed
+
+Column: state[0] state[1] state[2] partial_sbox
+Type:   advice   advice   advice   advice      
+
+Column: rc_a[0] rc_a[1] rc_a[2] rc_b[0] rc_b[1] rc_b[2]
+Type:   fixed   fixed   fixed   fixed   fixed   fixed
+
+Pow5Chip:
+witness hash input:
+- w_state[0], w_state[1], w_state[2]
+- w_partial_sbox
+- w_rc_a[0], w_rc_a[1], w_rc_a[2]
+- w_rc_b[0], w_rc_b[1], w_rc_b[2]
+
+hash input:
+- state[0], state[1], state[2]
+- partial_sbox
+- rc_a[0], rc_a[1], rc_a[2]
+- rc_b[0], rc_b[1], rc_b[2]
+
+Table:
+
+(witness)  (digest)
+x          nullifier
+nonce      commitment_digest
+0
+
+
+commitment_digest = hash(x, 0)
+nullifier = hash(x, nonce)
